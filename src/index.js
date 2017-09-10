@@ -2,7 +2,7 @@ import Koa from 'koa';
 import {getConfigs} from '../configs';
 import {getLogger} from './utils/logger';
 import controllers from './controllers';
-import models from './models';
+import {initConnection} from './models';
 
 /* GLOBAL VARIABLES */
 global.__CONFIG__ = getConfigs();
@@ -12,7 +12,7 @@ const app = new Koa();
 
 __LOGGER__.info('Starting up API Hapta v1 ...');
 
-models();
+initConnection();
 controllers(app);
 
 app.listen(__CONFIG__.api.port);
